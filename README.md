@@ -4,6 +4,20 @@
 
 ### Follow these simple steps to migrate your repository
 
+Make sure you have all the remote branches available locally
+
+```bash
+git fetch --all
+```
+
+Now create local branches corresponding to remote branches
+
+```bash
+for branch in $(git branch -r | grep -v '\->'); do
+    git branch --track ${branch#origin/} $branch
+done
+```
+
 Rename current origin to something different, so if you are currently on bitbucket, you can name your remote to `bitbucket`:
 
 ``` bash
